@@ -1,13 +1,14 @@
-const inputYear = document.querySelector('---');
-const outputResult = document.querySelector('---');
+const inputYear = document.querySelector('.leapYearInput');
+const outputResult = document.querySelector('.leapYearText');
 
-inputYear.addEventListener('unfocus', () => {
-    if (inputYear.value < 0) {
+inputYear.addEventListener('focusout', () => {
+    let year = parseInt(inputTime.value);
+    if (year < 0) {
         outputResult.textContent = 'Рік має бути додатний';
-        outputResult.style.color = '#d56a00';
+        outputResult.style.color = '#D5A000';
         return;
     }
-    if (inputYear.value % 4 === 0) {
+    if (year % 4 === 0) {
         outputResult.textContent = 'Ви народилися у високосний рік!';
         outputResult.style.color = '#039900';
     }
