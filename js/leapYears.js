@@ -1,8 +1,10 @@
 const inputYear = document.querySelector('.leapYearInput');
 const outputResult = document.querySelector('.leapYearText');
+outputResult.textContent = 'Введіть рік народження';
 
-inputYear.addEventListener('focusout', () => {
-    let year = parseInt(inputTime.value);
+const checkYear = () => {
+    let year = inputYear.value;
+    console.log(year);
     if (year < 0) {
         outputResult.textContent = 'Рік має бути додатний';
         outputResult.style.color = '#D5A000';
@@ -16,4 +18,6 @@ inputYear.addEventListener('focusout', () => {
         outputResult.textContent = 'Ви не народилися у високосний рік';
         outputResult.style.color = '#990000';
     }
-});
+}
+
+inputYear.addEventListener('keyup', checkYear);

@@ -4,11 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <header class="header">
-
+        <div class="logo">
+            <img src="./images/Group 2.png" alt="">
+            <div>Coding <br><span>Magic</span></div>
+        </div>
+        <nav>
+            <p>Інтерактив<img src="./images/Vector 4.png" alt=""></p>
+            <p>Наша команда</p>
+            <p>Контакти</p>
+        </nav>
+        <button id="themeButton"></button>
+        <p>Вітаємо, User!</p>
     </header>
 
     <main class="main">
@@ -17,30 +30,211 @@
             <p class="leapYearText"></p>
         </section>
 
+        <!--  -->
+
+
+        <section class="rock-paper-scissors">
+            <h2>Камінь - ножиці - папір</h2>
+            <div class="counter-and-buttons">
+                <button id="rock" class="choice"><img src="./images/stone 1(2).png" alt=""></button>
+                <button id="scissors" class="choice"><img src="./images/scissors 1.png" alt=""></button>
+                <button id="paper" class="choice"><img src="./images/paper 1.png" alt=""></button>
+                <div class="counter">
+                    <p>Рахунок:</p>
+                    <div>
+                        <p>You
+                        <p id="comp-score">0</p>
+                        </p>
+                        <p>Computer
+                        <p id="user-score">0</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+
+        <section class="calculator">
+            <h1>Калькулятор</h1>
+            <div class="input-group">
+                <input type="number" id="num1" placeholder="Введіть число" />
+
+                <div class="operators">
+                    <div class="operator selected" data-op="+">+</div>
+                    <div class="operator" data-op="-">−</div>
+                    <div class="operator" data-op="*">×</div>
+                    <div class="operator" data-op="/">÷</div>
+                </div>
+
+                <input type="number" id="num2" placeholder="Введіть число" />
+
+                <button class="equals-btn" id="equals">=</button>
+
+                <input type="text" id="result" placeholder="Результат" readonly />
+            </div>
+        </section>
+
         <section class="timeCalc">
             <input type="number" class="timeCalcInput">
             <p class="timeCalcText"></p>
         </section>
 
         <section class="dino">
+            <div class="dinoKeyCatch"></div>
             <svg class="dinoSVG"></svg>
-            <p class="scoreText"></p>
         </section>
 
         <section class="football">
-            <div class="football__field">
-                <div class="football__ball"></div>
-                <div class="football__cursor"></div>
+            <div class="football__field"></div>
+            <div class="football__ball"></div>
+            <div class="football__cursor"></div>
+        </section>
+
+        <!--  --> 
+
+        <section class="dotcontainer" id="dotcontainer">
+            <div class="dots" id="page2" onclick="window.location.hash = '#page2';"></div>
+            <div class="dots" id="page3" onclick="window.location.hash = '#page3';"></div>
+            <input id="v1" name="v1" type="checkbox">
+            <section id="pagecontainer">
+
+                <div class="page p2" onclick="handlePageClick(event, this.className);">
+                    <hr />
+                    <ul>
+                        <li>
+                            <h2>Макс</h2>
+                        </li>
+                        <br />
+                        <li><a href="">Інформація про роботу, яку він/вона виконав/ла</a></li>
+                    </ul>
+                </div>
+                <div class="page p3" onclick="handlePageClick(event, this.className);">
+                    <hr />
+                    <ul>
+                        <li>
+                            <h2>Сєва</h2>
+                        </li>
+                        <br />
+                        <li><a href="">Інформація про роботу, яку він/вона виконав/ла</a></li>
+                    </ul>
+                </div>
+            </section>
+        </section>
+
+        <section class="cards">
+            <ul class="cardList">
+                <li class="cardItem">
+                    <p class="cardItemText"></p>
+                </li>
+                <li class="cardItem">
+                    <p class="cardItemText"></p>
+                </li>
+                <li class="cardItem">
+                    <p class="cardItemText"></p>
+                </li>
+                <li class="cardItem">
+                    <p class="cardItemText"></p>
+                </li>
+                <li class="cardItem">
+                    <p class="cardItemText"></p>
+                </li>
+                <li class="cardItem">
+                    <p class="cardItemText"></p>
+                </li>
+                <li class="cardItem">
+                    <p class="cardItemText"></p>
+                </li>
+                <li class="cardItem">
+                    <p class="cardItemText"></p>
+                </li>
+                <li class="cardItem">
+                    <p class="cardItemText"></p>
+                </li>
+                <li class="cardItem">
+                    <p class="cardItemText"></p>
+                </li>
+                <li class="cardItem">
+                    <p class="cardItemText"></p>
+                </li>
+                <li class="cardItem">
+                    <p class="cardItemText"></p>
+                </li>
+            </ul>
+            <ul class="categoriesList">
+                <div class="taskFixDiv">
+                    <li class="categoriesItem">
+                        <p class="categoriesText"></p>
+                    </li>
+                    <li class="categoriesItem">
+                        <p class="categoriesText"></p>
+                    </li>
+                    <li class="categoriesItem">
+                        <p class="categoriesText"></p>
+                    </li>
+                    <li class="categoriesItem">
+                        <p class="categoriesText"></p>
+                    </li>
+                </div>
+                <div class="taskFixDiv">
+                    <li class="categoriesItem">
+                        <p class="categoriesText"></p>
+                    </li>
+                    <li class="categoriesItem">
+                        <p class="categoriesText"></p>
+                    </li>
+                    <li class="categoriesItem">
+                        <p class="categoriesText"></p>
+                    </li>
+                    <li class="categoriesItem">
+                        <p class="categoriesText"></p>
+                    </li>
+                </div>
+                <li class="categoriesItem">
+                    <p class="categoriesText"></p>
+                </li>
+            </ul>
+        </section>
+        
+        <section class="eyes">
+            <div class="eyeBody1">
+                <div class="eyePupil1"></div>
+            </div>
+            <div class="eyeBody2">
+                <div class="eyePupil2"></div>
             </div>
         </section>
+
     </main>
 
-    <footer class="footer">
 
+    <footer class="footer">
+        <div class="logo">
+            <img src="./images/Group 2.png" alt="">
+            <div>Coding <br><span>Magic</span></div>
+        </div>
+        <p>Тел: +38 (123) 456 78 90 <br>
+            E-Mail: codingmagic@gmail.com <br>
+            Facebook: CodingMagic <br>
+            Twitter: CodingMagic <br>
+            Instagram: CodingMagic</p> <br>
+        <div>
+            <input type="text" placeholder="Ваша ел. адреса..." class="t-imput">
+            <button>Підписатись</button>
+            <p>*Підписавшись, Ви зможете ортимувати інформаццію про новинки на сайті</p>
+        </div>
     </footer>
+
+     <script src="./js/section-card.js"></script>
+    <script src="./js/rock-paper-scissors.js"></script>
+    <script src="./js/Math-calculator.js"></script>
+    <script src="./js/projct.js"></script>
+
     <script src="./js/leapYears.js"></script>
     <script src="./js/timeCalc.js"></script>
     <script src="./js/dino.js"></script>
     <script src="./js/football.js"></script>
+    <script src="./js/cards.js"></script>
+    <script src="./js/eyes.js"></script>
 </body>
 </html>
