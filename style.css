@@ -28,6 +28,8 @@ body.dark {
 section {
     border-top: #000000 1px solid;
     border-bottom: #000000 1px solid;
+    /* margin: 10px 0; */
+    padding: 10px 0;
 }
 
 .rock-paper-scissors {
@@ -296,7 +298,7 @@ section {
 
 #dotcontainer {
     width: 4.35rem;
-    margin: 0 auto;
+    margin: 0 auto 500px;
     padding: 0;
     height: 1.25rem;
 }
@@ -432,4 +434,32 @@ section {
     transform: rotateY(0deg);
     left: calc(50% - 10rem);
     opacity: 1;
+}
+
+.dino {
+    height: 240px;
+}
+
+.threeNums {
+    width: 720px;
+}
+
+.threeNumsInputList {
+    display: flex;
+    justify-content: space-between;
+}
+
+.threeNumsInput {
+    padding: 12px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 50px;
+    background-color: #e0e0e0;
+    width: 180px;
+    text-align: center;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.threeNumsOutput {
+    text-align: center;
 }

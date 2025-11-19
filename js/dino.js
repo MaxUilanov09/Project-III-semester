@@ -52,11 +52,13 @@ dinoSvg.setAttribute('viewBox', `0 0 ${svgWidth} ${svgHeight}`);
 dinoSvg.setAttribute('width', `${svgWidth}`);
 dinoSvg.setAttribute('height', `${svgHeight}`);
 
-dinoKeyCatch.style.position = 'relative';
+dinoSvg.style.position = 'relative';
+dinoSvg.style.top = `${-svgHeight}px`;
+
 dinoKeyCatch.style.width = `${svgWidth}px`;
 dinoKeyCatch.style.height = `${svgHeight}px`;
-dinoKeyCatch.style.top = `${svgHeight}px`;
 dinoKeyCatch.style.zIndex = '100';
+
 
 function addLine(startPoint, endPoint, color = dinoColor) {
     let lineStr = `<line x1="${startPoint[0]}" y1="${startPoint[1]}" x2="${endPoint[0]}" y2="${endPoint[1]}" stroke="${color}"/>`;

@@ -320,12 +320,11 @@ function addCardListener() {
                             }
                             let endCardId = scientistList[cardEndIdx];
                             console.log('a:', g(scientistList), '\n', cardStartIdx, '=>', cardEndIdx, '\n', cardId, '=>', endCardId); 
-                            scientistList.splice(cardStartIdx, 1);
-                            scientistList.splice(cardEndIdx, 0, cardId);
+                            scientistList = swap(scientistList, cardId, endCardId);
+                            console.log('b:', g(scientistList)); 
                             userAnswers = [cardId];
                             fillCards();
                             update();
-                            console.log('b:', g(scientistList)); 
                         });
                     }
                     
@@ -388,7 +387,6 @@ function update() {
     for (let i = 0; i < cardList.children.length; i++) {
         const card = cardList.children.item(i);
         if ([1, 2].includes(taskNum)) {
-            console.log(scientistList.findIndex((x) => x === userAnswers[0]), i);
             if (scientistList.findIndex((x) => x === userAnswers[0]) === i) {
                 card.style.backgroundColor = '#CCCC00';
             }

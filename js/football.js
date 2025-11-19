@@ -6,7 +6,7 @@ const fieldHeight = Math.floor(fieldWidth * 0.3);
 let intervalId = -1;
 
 let ballTop = fieldDiv.offsetTop + 85;
-let ballLeft = 92;
+let ballLeft = fieldDiv.offsetLeft - (fieldWidth / 2) + 92;
 
 fieldDiv.style.width = `${fieldWidth}px`;
 fieldDiv.style.height = `${fieldHeight}px`;

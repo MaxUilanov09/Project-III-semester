@@ -105,9 +105,9 @@ function movePupils(mouseX, mouseY) {
 function defaultPupils() {
     pupilPos1X = pupilPos1X + (pupilPoses[0][0] - pupilPos1X) / 10;
     pupilPos2X = pupilPos2X + (pupilPoses[1][0] - pupilPos2X) / 10;
-    eyeBody1.style.transform = `rotate(${rotations[0]}rad)`;
+    eyeBody1.style.transform = `rotate(${Math.PI - rotations[0]}rad)`;
     eyePupil1.style.left = `${pupilPos1X}px`;
-    eyeBody2.style.transform = `rotate(${rotations[1]}rad)`;
+    eyeBody2.style.transform = `rotate(${Math.PI - rotations[1]}rad)`;
     eyePupil2.style.left = `${pupilPos2X}px`;
 }
 
