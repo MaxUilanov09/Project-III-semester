@@ -36,12 +36,12 @@ const showWinner=(userWin,userChoice,compChoice)=>{
 
 const playGame=(userChoice)=>{
     console.log("user choice=",userChoice);
-    //computer choice
+    
     const compChoice = genCompChoice();
     console.log("comp choice =",compChoice);
 
     if(userChoice === compChoice){
-        //drawgame
+        
         drawGame();
 
     }else{
