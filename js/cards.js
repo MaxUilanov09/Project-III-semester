@@ -111,6 +111,7 @@ const taskAnswers = [
 let scientistList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 let taskNum = -1;
 let userAnswers = [];
+let wrongAnswers = [];
 let currentCard = -1;
 let completedTasks = [];
 
@@ -136,11 +137,26 @@ const textMarginLeft = 16;
 const taskTextFontSize = 12;
 const taskTextLineHeight = 1.25;
 
-const listCollumGap = 39;
-const listRowGap = 59;
+const listCollumGap = 59;
+const listRowGap = 39;
 
-const cardsWidth = itemWidth * 4 + listRowGap * 3 + itemBWidth * 2 * 4;
+const totalLeft = itemWidth + listCollumGap;
+const convergenceFactor = 10;
+
+const cardsWidth = itemWidth * 4 + listCollumGap * 3;
 const sectionWidth = 860;
+
+const taskColorNormal = '#000000';
+const taskColorAccent = '#777700';
+const taskColorDone = '#007700';
+const cardColorAccent = '#CCCC00';
+const cardColorWrong = '#CC0000';
+const cardColorDone = '#00CC00';
+
+const Vdt = 0.03;
+
+let ableToPressFlag = true;
+let ableToExitVictory = true;
 
 function addEventStyles(element, event, styleObj) {
     element.addEventListener(event, () => {
@@ -158,10 +174,11 @@ function setStyles() {
     cardList.style.display = 'flex';
     cardList.style.width = `${cardsWidth}px`;
     cardList.style.listStyle = 'none';
-    cardList.style.gap = `${listCollumGap}px ${listRowGap}px`;
+    cardList.style.gap = `${listRowGap}px ${listCollumGap}px`;
     cardList.style.flexWrap = 'wrap';
     cardList.style.margin = '0 170px 36px 110px';
     cardList.style.padding = '0';
+    cardList.style.overflow = 'hidden';
 
     for (const cardItem of cardItems) {
         cardItem.style.display = 'block';
@@ -171,9 +188,9 @@ function setStyles() {
         cardItem.style.borderRadius = `${itemBRadius}px`;
     }
 
-    let scientistId = 1;
+    let scientistId = 0;
     for (const cardText of cardTexts) {
-        let textMarginTop = (itemHeight - textFontSize * textLineHeight * (2 + (scientists.find(x => x.id === scientistId).name.length + scientists.find(x => x.id === scientistId).surname.length >= 16))) / 2;
+        let textMarginTop = (itemHeight - textFontSize * textLineHeight * (2 + (scientists.find(x => x.id === scientistList[scientistId]).name.length + scientists.find(x => x.id === scientistList[scientistId]).surname.length >= 16))) / 2;
         cardText.style.fontFamily = `Montserrat Alternates`;
         cardText.style.fontSize = `${textFontSize}px`;
         cardText.style.lineHeight = `${textLineHeight}`;
@@ -232,7 +249,64 @@ function g(arr) {
     return res;
 }
 
-function swap(arr, el1, el2) {
+function intervalSwapAnimation(idx1, idx2, leftPos) {
+    let card1 = cardList.children.item(idx1);
+    let card2 = cardList.children.item(idx2);
+    let direction = Math.sign(idx2 - idx1);
+    let onBoundary = [7, 15].includes(Math.abs(idx1) + Math.abs(idx2));
+    if (onBoundary) {
+        leftPos = leftPos + (2 * itemWidth - leftPos) / convergenceFactor;
+        if (itemWidth < leftPos) {
+            card1.style.top = `${(itemHeight + listRowGap) * direction}px`
+            card1.style.left = `${(-cardsWidth - (itemWidth - leftPos)) * direction}px`
+            card2.style.top = `${-(itemHeight + listRowGap) * direction}px`
+            card2.style.left = `${(cardsWidth + (itemWidth - leftPos)) * direction}px`
+        }
+        else {
+            card1.style.left = `${leftPos * direction}px`;
+            card2.style.left = `${-leftPos * direction}px`;
+        }
+        return [leftPos, Math.abs(2 * itemWidth - leftPos) < 0.5];
+    }
+    else {
+        leftPos = leftPos + (totalLeft - leftPos) / convergenceFactor;
+        card1.style.left = `${leftPos * direction}px`;
+        card2.style.left = `${-leftPos * direction}px`;
+        return [leftPos, Math.abs(totalLeft - leftPos) < 0.5];
+    }
+}
+
+function delay(start, duration) {
+    let x = 0;
+    while (Date.now() - start < duration) {
+        x++;
+    }
+    return;
+}
+
+function swap(arr, idx1, idx2) {
+    if (idx1 === idx2) {
+        return arr.map(x => x);
+    }
+    let intervalId = -1;
+    let leftPos = 0;
+    ableToPressFlag = false;
+    intervalId = setInterval(() => {
+        [leftPos, result] = intervalSwapAnimation(idx1, idx2, leftPos);
+        if (intervalId !== -1 && result) {
+            clearInterval(intervalId);
+            cardList.children.item(idx1).style.left = `${0}px`;
+            cardList.children.item(idx1).style.top = `${0}px`;
+            cardList.children.item(idx2).style.left = `${0}px`; 
+            cardList.children.item(idx2).style.top = `${0}px`; 
+            setStyles();
+            fillCards();
+            update();
+            ableToPressFlag = true;
+        }
+    }, 10);
+    let el1 = scientistList[idx1];
+    let el2 = scientistList[idx2];
     return arr.map(x => {
         if (x === el1) {
             return el2;
@@ -243,14 +317,134 @@ function swap(arr, el1, el2) {
         else {
             return x;
         }
-    })
+    });
 }
 
 function getTarget(ev) {
     return ev.target.children.item(0);
 }
 
+function keyMoveCard(ev, currentCard) {
+    ev.preventDefault();
+    let cardStartIdx = scientistList.indexOf(currentCard);
+    let cardEndIdx;
+    switch (ev.key) {
+        case 'ArrowLeft':
+            cardEndIdx = Math.max(cardStartIdx - 1, 0);
+            break;
+        
+        case 'ArrowRight':
+            cardEndIdx = Math.min(cardStartIdx + 1, 11);
+            break;
+    }
+    let endCardId = scientistList[cardEndIdx];
+    console.log('sb:', scientistList, '\n', 'idx:', cardStartIdx, '=>', cardEndIdx, '\n', 'cardIds:', currentCard, '=>', endCardId);
+    scientistList = swap(scientistList, cardStartIdx, cardEndIdx);
+    console.log('sa:', scientistList);
+}
+
+function getCardId(target) {
+    return scientists.find(x => {return x.dead === parseInt(target.textContent.slice(-4))}).id;
+}
+
+function removeEl(arr, el) {
+    return arr.filter((x) => x !== el);
+}
+
+function equateArrs(arr1, arr2) {
+    return arr1.length === arr2.length && arr1.every((x, idx) => x === arr2[idx]);
+}
+
+function VTopFunc(t) {
+    return -(listRowGap / 2) * Math.sin(t * Math.PI);
+}
+
+function toDec(str) {
+    return Number('0x' + str);
+}
+
+function VColorFunc(t) {
+    let resultColor = '#';
+    for (let i = 0; i < 3; i++) {
+        let colorA = toDec(itemBGColor.slice(1 + i * 2, 1 + (i + 1) * 2));
+        let colorB = toDec(cardColorDone.slice(1 + i * 2, 1 + (i + 1) * 2));
+        resultColor += parseInt(colorA + (colorB - colorA) * t).toString(16).padStart(2, '0');
+    }
+    console.log(resultColor, t);
+    return resultColor;
+}
+
+function VTimeCheck(t) {
+    t += Vdt;
+    if (t > 1) {
+        return [0, true];
+    }
+    return [t, false];
+}
+
+function victoryAnimation(idxArr) {
+    let intervalIdArr = Array(idxArr.length).fill(-1);
+    let intervalTimeArr = Array(idxArr.length).fill(0);
+    ableToExitVictory = false;
+    for (let i = 0; i < idxArr.length; i++) {
+        setTimeout(() => {intervalIdArr[i] = setInterval(() => {
+            [intervalTimeArr[i], result] = VTimeCheck(intervalTimeArr[i]);
+            if (intervalIdArr[i] !== -1 && result) {
+                clearInterval(intervalIdArr[i]);
+                intervalIdArr[i] = -1;
+                intervalTimeArr[i] = 1;
+                if (intervalTimeArr.every(x => x === 1)) {
+                    toDefaultState();
+                    ableToExitVictory = true;
+                }
+            }
+            cardList.children.item(idxArr[i]).style.backgroundColor = VColorFunc(intervalTimeArr[i]);
+            cardList.children.item(idxArr[i]).style.top = `${VTopFunc(intervalTimeArr[i])}px`;
+        }, 10)}, 200 * i);
+    }
+}
+
+function toDefaultState() {
+    completedTasks.push(taskNum);
+    scientistList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    taskNum = -1;
+    currentCard = -1;
+    userAnswers = [];
+    wrongAnswers = [];
+    fillCards();
+    update();
+}
+
+function findTaskWrap(ev, taskObj, deleteFlag = false) {
+    target = getTarget(ev);
+    if (target.tagName === 'P') {
+        let cardId = getCardId(target);
+        if (taskObj.answerIds.includes(cardId)) {
+            if (deleteFlag) {
+                scientistList = removeEl(scientistList, cardId);
+            }
+            userAnswers.push(cardId);
+            fillCards();
+        }
+        else {
+            wrongAnswers.push(cardId);
+        }
+        update();
+        userAnswers.sort((a, b) => a - b);
+        if (equateArrs(userAnswers, taskObj.answerIds)) {
+            victoryAnimation(userAnswers.map(x => x - 1));
+            update();
+        }
+    }
+}
+
 function addCardListener() {
+    addEventListener('keydown', (ev) => {
+        ev.preventDefault();
+        if (ableToPressFlag && (ev.key === 'ArrowLeft' || ev.key === 'ArrowRight')) {
+            keyMoveCard(ev, currentCard);
+        }
+    });
     cardList.addEventListener('click', (ev) => {
         let taskObj = taskAnswers[taskNum];
         let target;
@@ -259,76 +453,24 @@ function addCardListener() {
         }
         switch (taskObj.type) {
             case 'find':
-                target = getTarget(ev);
-                if (target.tagName === 'P') {
-                    let cardId = scientists.find((x) => {return x.dead === parseInt(target.textContent.slice(-4))}).id;
-                    if (userAnswers.includes(cardId)) {
-                        userAnswers = userAnswers.filter((x) => x !== cardId);
-                    }
-                    else {
-                        userAnswers.push(cardId);
-                    }
-                    userAnswers.sort((a, b) => a - b);
-                    if (userAnswers.length === taskObj.answerIds.length && userAnswers.every((x, idx) => x === taskObj.answerIds[idx])) {
-                        completedTasks.push(taskNum);
-                        taskNum = -1;
-                        userAnswers = [];
-                    }
-                }
+                findTaskWrap(ev, taskObj);
                 break;
             
             case 'find-year':
-                target = getTarget(ev);
-                if (target.tagName === 'P') {
-                    let cardId = scientists.find((x) => {return x.dead === parseInt(target.textContent.slice(-4))}).id;
-                    if (userAnswers.includes(cardId)) {
-                        userAnswers = userAnswers.filter((x) => x !== cardId);
-                    }
-                    else {
-                        userAnswers.push(cardId);
-                    }
-                    userAnswers.sort((a, b) => a - b);
-                    if (userAnswers.length === taskObj.answerIds.length && userAnswers.every((x, idx) => x === taskObj.answerIds[idx])) {
-                        completedTasks.push(taskNum);
-                        taskNum = -1;
-                        userAnswers = [];
-                    }
-                }
+                findTaskWrap(ev, taskObj);
                 break;
             
             case 'sort':
                 target = getTarget(ev);
                 if (target.tagName === 'P') {
-                    let cardId = scientists.find(x => {return x.dead === parseInt(target.textContent.slice(-4))}).id;
-                    if (currentCard === cardId) {
-                        currentCard = -1;
-                    }
-                    else {
-                        currentCard = cardId;
-                        addEventListener('keydown', (ev) => {
-                            ev.preventDefault();
-                            let cardStartIdx = scientistList.indexOf(cardId);
-                            let cardEndIdx;
-                            switch (ev.key) {
-                                case 'ArrowLeft':
-                                    cardEndIdx = Math.max(cardStartIdx - 1, 0);
-                                    break;
-                                
-                                case 'ArrowRight':
-                                    cardEndIdx = Math.min(cardStartIdx + 1, 11);
-                                    break;
-                            }
-                            let endCardId = scientistList[cardEndIdx];
-                            console.log('a:', g(scientistList), '\n', cardStartIdx, '=>', cardEndIdx, '\n', cardId, '=>', endCardId); 
-                            scientistList = swap(scientistList, cardId, endCardId);
-                            console.log('b:', g(scientistList)); 
-                            userAnswers = [cardId];
-                            fillCards();
-                            update();
-                        });
-                    }
-                    
+                    let cardId = getCardId(target);
+                    currentCard = (currentCard === cardId) ? -1 : cardId;
                 }
+                break;
+            
+            case 'delete':
+                findTaskWrap(ev, taskObj, deleteFlag = true);
+                break;
         }
     });
 }
@@ -351,14 +493,22 @@ function addListeners() {
 }
 
 function fillCards(noName = false) {
-    for (let itemIdx = 0; itemIdx < scientistList.length; itemIdx++) {
-        const item = cardList.children.item(itemIdx).children.item(0);
-        let itemObj = scientists.find(x => x.id === scientistList[itemIdx]);
-        if (noName) {
-            item.innerHTML = `<br>${itemObj.born}-${itemObj.dead}`; 
+    for (let itemIdx = 0; itemIdx < 12; itemIdx++) {
+        const card = cardList.children.item(itemIdx);
+        card.style.position = 'relative';
+        if (itemIdx > scientistList.length - 1) {
+            card.style.display = 'none';
         }
         else {
-            item.innerHTML = `${itemObj.name} ${itemObj.surname}<br>${itemObj.born}-${itemObj.dead}`; 
+            card.style.display = 'block';
+            const item = card.children.item(0);
+            let itemObj = scientists.find(x => x.id === scientistList[itemIdx]);
+            if (noName) {
+                item.innerHTML = `<br>${itemObj.born}-${itemObj.dead}`; 
+            }
+            else {
+                item.innerHTML = `${itemObj.name} ${itemObj.surname}<br>${itemObj.born}-${itemObj.dead}`; 
+            }
         }
     }
 }
@@ -375,30 +525,37 @@ function update() {
     for (let i = 0; i < categoriesItems.length; i++) {
         let taskItem = categoriesItems.item(i);
         if (i === taskNum) {
-            taskItem.style.backgroundColor = '#777700';
+            taskItem.style.backgroundColor = taskColorAccent;
         }
         else if (completedTasks.includes(i)) {
-            taskItem.style.backgroundColor = '#007700';
+            taskItem.style.backgroundColor = taskColorDone;
         }
         else {
-            taskItem.style.backgroundColor = '#000000';
+            taskItem.style.backgroundColor = taskColorNormal;
         }
     }
+
     for (let i = 0; i < cardList.children.length; i++) {
         const card = cardList.children.item(i);
-        if ([1, 2].includes(taskNum)) {
-            if (scientistList.findIndex((x) => x === userAnswers[0]) === i) {
-                card.style.backgroundColor = '#CCCC00';
+        if (taskNum === 1 || taskNum === 2) {
+            if (equateArrs(scientistList, taskAnswers[taskNum].answerIds)) {
+                toDefaultState();
+            }
+            if (scientistList.findIndex((x) => x === currentCard) === i) {
+                card.style.backgroundColor = cardColorAccent;
             }
             else {
-                card.style.backgroundColor = `${itemBGColor}`;
+                card.style.backgroundColor = itemBGColor;
             }
         }
-        else if (userAnswers.includes(i + 1)) {
-            card.style.backgroundColor = '#CCCC00';
+        else if (userAnswers.includes(i + 1) && taskNum !== 6) {
+            card.style.backgroundColor = cardColorAccent;
+        }
+        else if (wrongAnswers.includes(i + 1 + userAnswers.length * (taskNum === 6))) {
+            card.style.backgroundColor = cardColorWrong;
         }
         else {
-            card.style.backgroundColor = `${itemBGColor}`;
+            card.style.backgroundColor = itemBGColor;
         }
     }
 }
