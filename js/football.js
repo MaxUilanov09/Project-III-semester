@@ -12,6 +12,7 @@ fieldDiv.style.width = `${fieldWidth}px`;
 fieldDiv.style.height = `${fieldHeight}px`;
 fieldDiv.style.backgroundColor = '#5ABB58';
 fieldDiv.style.borderColor = '#000000';
+fieldDiv.style.borderRadius = '20px';
 
 ballDiv.style.position = 'absolute';
 ballDiv.style.top = `${ballTop}px`;

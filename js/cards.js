@@ -123,6 +123,7 @@ const categoriesList = document.querySelector('.categoriesList');
 const taskFixDivs = document.querySelectorAll('.taskFixDiv');
 const categoriesItems = document.querySelectorAll('.categoriesItem');
 const categoriesTexts = document.querySelectorAll('.categoriesText');
+let modeCard = document.querySelector(':root').style.getPropertyValue('--mode');
 
 const itemWidth = 100;
 const itemHeight = 100;
@@ -167,7 +168,7 @@ function addEventStyles(element, event, styleObj) {
 }
 
 function setStyles() {
-    console.log(cardsSection.style);
+    modeCard = document.querySelector(':root').style.getPropertyValue('--mode');
     cardsSection.style.width = `${sectionWidth}px`;
     cardsSection.style.marginLeft = '50px';
 
@@ -194,6 +195,7 @@ function setStyles() {
         cardText.style.fontFamily = `Montserrat Alternates`;
         cardText.style.fontSize = `${textFontSize}px`;
         cardText.style.lineHeight = `${textLineHeight}`;
+        cardText.style.color = '#222222';
         cardText.style.margin = `${textMarginTop}px ${textMarginLeft}px`;
         cardText.style.padding = '0';
         cardText.style.textAlign = 'center';
@@ -221,7 +223,7 @@ function setStyles() {
     for (const task of categoriesItems) {
         task.style.display = 'inline-block';
         task.style.maxWidth = '450px';
-        task.style.backgroundColor = '#000000';
+        task.style.backgroundColor = (modeCard === '1') ? '#000000' : '#CCCCCC';
         task.style.padding = '10px 20px';
         task.style.borderRadius = '20px';
         task.style.width = 'fit-content';
@@ -234,7 +236,7 @@ function setStyles() {
         taskText.style.fontFamily = `Montserrat Alternates`;
         taskText.style.fontSize = `${taskTextFontSize}px`;
         taskText.style.lineHeight = `${taskTextLineHeight}`;
-        taskText.style.color = '#FFFFFF';
+        taskText.style.color = (modeCard === '1') ? '#FFFFFF' : '#222222';
         taskText.style.margin = '0';
         taskText.style.padding = '0';
         taskText.style.boxSizing = 'content-box';
@@ -567,3 +569,6 @@ addListeners();
 addCardListener();
 
 cardsSection.addEventListener('click', update);
+
+
+export {setStyles};

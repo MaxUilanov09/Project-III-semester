@@ -54,6 +54,8 @@ dinoSvg.setAttribute('height', `${svgHeight}`);
 
 dinoSvg.style.position = 'relative';
 dinoSvg.style.top = `${-svgHeight}px`;
+dinoSvg.style.backgroundColor = '#FFFFFF';
+dinoSvg.style.borderRadius = '10px';
 
 dinoKeyCatch.style.width = `${svgWidth}px`;
 dinoKeyCatch.style.height = `${svgHeight}px`;
