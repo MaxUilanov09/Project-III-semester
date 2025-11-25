@@ -278,8 +278,17 @@ section {
 
 
 section {
-    gap: 50px !important;
+    gap: 50px !important;  
+    margin-bottom: 25px;
+    width: 100%;
 }
+
+.container { треба щоб працювало
+    display: block;
+    margin: 0 auto;
+    box-sizing: border-box; 
+}
+
 
 .dots {
     border-radius: 1.25rem;

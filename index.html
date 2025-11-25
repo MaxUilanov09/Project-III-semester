@@ -31,28 +31,42 @@
 
     <main class="main">
         <section class="leapYears">
-            <input type="number" class="leapYearInput">
-            <p class="leapYearText"></p>
+            <div class="container">
+                <input type="number" class="leapYearInput">
+                <p class="leapYearText"></p>
+            </div>
         </section>
 
-        <!--  -->
+        <section class="">
+            <div class="container">
+                <h1>Вгадай число!</h1>
+                <p>Я загадав число від 1 до 10. Спробуй вгадати!</p>
+                <div class="input-container">
+                    <input type="number" id="guessInput" placeholder="Вкажіть число від 1 до 10" autofocus>
+                    <button onclick="checkGuess()">Перевірити</button>
+                </div>
+                <div class="output" id="output"></div>
+            </div>
+        </section>
 
 
         <section class="rock-paper-scissors">
-            <h2>Камінь - ножиці - папір</h2>
-            <div class="counter-and-buttons">
-                <button id="rock" class="choice"><img src="./images/stone 1(2).png" alt=""></button>
-                <button id="scissors" class="choice"><img src="./images/scissors 1.png" alt=""></button>
-                <button id="paper" class="choice"><img src="./images/paper 1.png" alt=""></button>
-                <div class="counter">
-                    <p>Рахунок:</p>
-                    <div>
-                        <p>You
-                        <p id="comp-score">0</p>
-                        </p>
-                        <p>Computer
-                        <p id="user-score">0</p>
-                        </p>
+            <div class="container">
+                <h2>Камінь - ножиці - папір</h2>
+                <div class="counter-and-buttons">
+                    <button id="rock" class="choice"><img src="./images/stone 1(2).png" alt=""></button>
+                    <button id="scissors" class="choice"><img src="./images/scissors 1.png" alt=""></button>
+                    <button id="paper" class="choice"><img src="./images/paper 1.png" alt=""></button>
+                    <div class="counter">
+                        <p>Рахунок:</p>
+                        <div>
+                            <p>You
+                            <p id="comp-score">0</p>
+                            </p>
+                            <p>Computer
+                            <p id="user-score">0</p>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -61,172 +75,174 @@
         </section>
 
         <section class="calculator">
-            <h1>Калькулятор</h1>
-            <div class="input-group">
-                <input type="number" id="num1" placeholder="Введіть число" />
-
-                <div class="operators">
-                    <div class="operator selected" data-op="+">+</div>
-                    <div class="operator" data-op="-">−</div>
-                    <div class="operator" data-op="*">×</div>
-                    <div class="operator" data-op="/">÷</div>
+            <div class="container">
+                <h1>Калькулятор</h1>
+                <div class="input-group">
+                    <input type="number" id="num1" placeholder="Введіть число" />
+                    <div class="operators">
+                        <div class="operator selected" data-op="+">+</div>
+                        <div class="operator" data-op="-">−</div>
+                        <div class="operator" data-op="*">×</div>
+                        <div class="operator" data-op="/">÷</div>
+                    </div>
+                    <input type="number" id="num2" placeholder="Введіть число" />
+                    <button class="equals-btn" id="equals">=</button>
+                    <input type="text" id="result" placeholder="Результат" readonly />
                 </div>
-
-                <input type="number" id="num2" placeholder="Введіть число" />
-
-                <button class="equals-btn" id="equals">=</button>
-
-                <input type="text" id="result" placeholder="Результат" readonly />
             </div>
         </section>
 
         <section class="timeCalc">
-            <input type="number" class="timeCalcInput">
-            <p class="timeCalcText"></p>
+            <div class="container">
+                <input type="number" class="timeCalcInput">
+                <p class="timeCalcText"></p>
+            </div>
         </section>
 
         <section class="dino">
-            <div class="dinoKeyCatch"></div>
-            <svg class="dinoSVG"></svg>
+            <div class="container">
+                <div class="dinoKeyCatch"></div>
+                <svg class="dinoSVG"></svg>
+            </div>
         </section>
 
         <section class="football">
-            <div class="football__field"></div>
-            <div class="football__ball"></div>
-            <div class="football__cursor"></div>
+            <div class="container">
+                <div class="football__field"></div>
+                <div class="football__ball"></div>
+                <div class="football__cursor"></div>
+            </div>
         </section>
 
         <section class="threeNums">
-            <div class="threeNumsInputList">
-                <input type="number" placeholder="Введіть число" class="threeNumsInput threeNumsInput1">
-                <input type="number" placeholder="Введіть число" class="threeNumsInput threeNumsInput2">
-                <input type="number" placeholder="Введіть число" class="threeNumsInput threeNumsInput3">
+            <div class="container">
+                <div class="threeNumsInputList">
+                    <input type="number" placeholder="Введіть число" class="threeNumsInput threeNumsInput1">
+                    <input type="number" placeholder="Введіть число" class="threeNumsInput threeNumsInput2">
+                    <input type="number" placeholder="Введіть число" class="threeNumsInput threeNumsInput3">
+                </div>
+                <p class="threeNumsOutput">Введіть числа</p>
             </div>
-            <p class="threeNumsOutput">Введіть числа</p>
         </section>
 
         <section class="dotcontainer" id="dotcontainer">
-            <div class="dots" id="page2" onclick="window.location.hash = '#page2';"></div>
-            <div class="dots" id="page3" onclick="window.location.hash = '#page3';"></div>
-            <input id="v1" name="v1" type="checkbox">
-            <section id="pagecontainer">
-
-                <div class="page p2" onclick="handlePageClick(event, this.className);">
-                    <hr />
-                    <ul>
-                        <li>
-                            <h2>Макс</h2>
-                        </li>
-                        <br />
-                        <li><a href="">Інформація про роботу, яку він/вона виконав/ла</a></li>
-                    </ul>
-                </div>
-                <div class="page p3" onclick="handlePageClick(event, this.className);">
-                    <hr />
-                    <ul>
-                        <li>
-                            <h2>Сєва</h2>
-                        </li>
-                        <br />
-                        <li><a href="">Інформація про роботу, яку він/вона виконав/ла</a></li>
-                    </ul>
-                </div>
-            </section>
+            <div class="container">
+                <div class="dots" id="page2" onclick="window.location.hash = '#page2';"></div>
+                <div class="dots" id="page3" onclick="window.location.hash = '#page3';"></div>
+                <input id="v1" name="v1" type="checkbox">
+                <section id="pagecontainer">
+                    <div class="page p2" onclick="handlePageClick(event, this.className);">
+                        <hr />
+                        <ul>
+                            <li>
+                                <h2>Макс</h2>
+                            </li>
+                            <br />
+                            <li><a href="">Інформація про роботу, яку він/вона виконав/ла</a></li>
+                        </ul>
+                    </div>
+                    <div class="page p3" onclick="handlePageClick(event, this.className);">
+                        <hr />
+                        <ul>
+                            <li>
+                                <h2>Сєва</h2>
+                            </li>
+                            <br />
+                            <li><a href="">Інформація про роботу, яку він/вона виконав/ла</a></li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
         </section>
 
         <section class="cards">
-            <ul class="cardList">
-                <li class="cardItem">
-                    <p class="cardItemText"></p>
-                </li>
-                <li class="cardItem">
-                    <p class="cardItemText"></p>
-                </li>
-                <li class="cardItem">
-                    <p class="cardItemText"></p>
-                </li>
-                <li class="cardItem">
-                    <p class="cardItemText"></p>
-                </li>
-                <li class="cardItem">
-                    <p class="cardItemText"></p>
-                </li>
-                <li class="cardItem">
-                    <p class="cardItemText"></p>
-                </li>
-                <li class="cardItem">
-                    <p class="cardItemText"></p>
-                </li>
-                <li class="cardItem">
-                    <p class="cardItemText"></p>
-                </li>
-                <li class="cardItem">
-                    <p class="cardItemText"></p>
-                </li>
-                <li class="cardItem">
-                    <p class="cardItemText"></p>
-                </li>
-                <li class="cardItem">
-                    <p class="cardItemText"></p>
-                </li>
-                <li class="cardItem">
-                    <p class="cardItemText"></p>
-                </li>
-            </ul>
-            <ul class="categoriesList">
-                <div class="taskFixDiv">
+            <div class="container">
+                <ul class="cardList">
+                    <li class="cardItem">
+                        <p class="cardItemText"></p>
+                    </li>
+                    <li class="cardItem">
+                        <p class="cardItemText"></p>
+                    </li>
+                    <li class="cardItem">
+                        <p class="cardItemText"></p>
+                    </li>
+                    <li class="cardItem">
+                        <p class="cardItemText"></p>
+                    </li>
+                    <li class="cardItem">
+                        <p class="cardItemText"></p>
+                    </li>
+                    <li class="cardItem">
+                        <p class="cardItemText"></p>
+                    </li>
+                    <li class="cardItem">
+                        <p class="cardItemText"></p>
+                    </li>
+                    <li class="cardItem">
+                        <p class="cardItemText"></p>
+                    </li>
+                    <li class="cardItem">
+                        <p class="cardItemText"></p>
+                    </li>
+                    <li class="cardItem">
+                        <p class="cardItemText"></p>
+                    </li>
+                    <li class="cardItem">
+                        <p class="cardItemText"></p>
+                    </li>
+                    <li class="cardItem">
+                        <p class="cardItemText"></p>
+                    </li>
+                </ul>
+                <ul class="categoriesList">
+                    <div class="taskFixDiv">
+                        <li class="categoriesItem">
+                            <p class="categoriesText"></p>
+                        </li>
+                        <li class="categoriesItem">
+                            <p class="categoriesText"></p>
+                        </li>
+                        <li class="categoriesItem">
+                            <p class="categoriesText"></p>
+                        </li>
+                        <li class="categoriesItem">
+                            <p class="categoriesText"></p>
+                        </li>
+                    </div>
+                    <div class="taskFixDiv">
+                        <li class="categoriesItem">
+                            <p class="categoriesText"></p>
+                        </li>
+                        <li class="categoriesItem">
+                            <p class="categoriesText"></p>
+                        </li>
+                        <li class="categoriesItem">
+                            <p class="categoriesText"></p>
+                        </li>
+                        <li class="categoriesItem">
+                            <p class="categoriesText"></p>
+                        </li>
+                    </div>
                     <li class="categoriesItem">
                         <p class="categoriesText"></p>
                     </li>
-                    <li class="categoriesItem">
-                        <p class="categoriesText"></p>
-                    </li>
-                    <li class="categoriesItem">
-                        <p class="categoriesText"></p>
-                    </li>
-                    <li class="categoriesItem">
-                        <p class="categoriesText"></p>
-                    </li>
-                </div>
-                <div class="taskFixDiv">
-                    <li class="categoriesItem">
-                        <p class="categoriesText"></p>
-                    </li>
-                    <li class="categoriesItem">
-                        <p class="categoriesText"></p>
-                    </li>
-                    <li class="categoriesItem">
-                        <p class="categoriesText"></p>
-                    </li>
-                    <li class="categoriesItem">
-                        <p class="categoriesText"></p>
-                    </li>
-                </div>
-                <li class="categoriesItem">
-                    <p class="categoriesText"></p>
-                </li>
-            </ul>
+                </ul>
+            </div>
         </section>
 
         <section class="eyes">
-            <div class="eyeBody1">
-                <div class="eyePupil1"></div>
-            </div>
-            <div class="eyeBody2">
-                <div class="eyePupil2"></div>
+            <div class="container">
+                <div class="eyeBody1">
+                    <div class="eyePupil1"></div>
+                </div>
+                <div class="eyeBody2">
+                    <div class="eyePupil2"></div>
+                </div>
             </div>
         </section>
 
     </main>
-    <section class="">
-        <h1>Вгадай число!</h1>
-        <p>Я загадав число від 1 до 10. Спробуй вгадати!</p>
-        <div class="input-container">
-            <input type="number" id="guessInput" placeholder="Вкажіть число від 1 до 10" autofocus>
-            <button onclick="checkGuess()">Перевірити</button>
-        </div>
-        <div class="output" id="output"></div>
-    </section>
 
     <footer class="footer">
         <div class="logo">
