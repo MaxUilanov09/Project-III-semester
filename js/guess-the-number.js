@@ -16,10 +16,8 @@ function checkGuess()
   
   if (guess == secretNumber)
   {
-    displayOutput("Поздоровляємо! Ти вгадав число " + secretNumber + " за " + guesses + " спроб/и!");
-    guessInput.disabled = true;
-    guessInput.placeholder = "Гра завершена";
-    guessInput.classList.add("disabled");
+    displayOutput("Поздоровляємо! Ти вгадав число " + secretNumber);
+    
   }
   else if (guess < secretNumber)
   {

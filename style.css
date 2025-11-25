@@ -18,6 +18,12 @@ body.dark {
     color: white;
 }
 
+.full-container{
+    width: 1440px;
+    height: 3456px;
+    
+}
+
 .main {
     display: flex;
     justify-content: center;
