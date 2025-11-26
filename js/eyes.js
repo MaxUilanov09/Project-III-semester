@@ -25,7 +25,7 @@ eyeDiv.style.alignItems = `center`;
 eyeDiv.style.justifyContent = `center`;
 eyeDiv.style.width = `${eyeDivWidth}px`;
 eyeDiv.style.height = `${eyeDivHeight}px`;
-// eyeDiv.style.margin = `0`;
+eyeDiv.style.marginTop = '40px';
 eyeDiv.style.backgroundColor = `#AAAAAA`;
 eyeDiv.style.borderRadius = '25px';
 

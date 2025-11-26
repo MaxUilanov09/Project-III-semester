@@ -51,23 +51,24 @@
         <section class="container-with-mini-games">
 
             <main class="main">
-                <section class="leapYears">
-                    <input type="number" class="leapYearInput">
+                <section class="leapYears underlineSection">
+                    <h2 class="leapYearHeader">Перевір в який рік ти народився</h2>
+                    <input class="leapYearInput">
                     <p class="leapYearText"></p>
                 </section>
 
-                <section class="guess-the-number">
-                    <h1>Вгадай число!</h1>
+                <section class="guess-the-number underlineSection">
+                    <h2>Вгадай число!</h2>
                     <p>Я загадав число від 1 до 10. Спробуй вгадати!</p>
                     <div class="input-container">
-                        <input type="number" id="guessInput" placeholder="Вкажіть число від 1 до 10" autofocus>
+                        <input type="number" id="guessInput" placeholder="Вкажіть число від 1 до 10">
                         <button onclick="checkGuess()">Перевірити</button>
                     </div>
                     <div class="output" id="output"></div>
                 </section>
 
 
-                <section class="rock-paper-scissors">
+                <section class="rock-paper-scissors underlineSection">
                     <h2>Камінь - ножиці - папір</h2>
                     <div class="counter-and-buttons">
                         <button id="rock" class="choice"><img src="./images/stone 1(2).png" alt=""></button>
@@ -89,8 +90,8 @@
 
                 </section>
 
-                <section class="calculator">
-                    <h1>Калькулятор</h1>
+                <section class="calculator underlineSection">
+                    <h2>Калькулятор</h2>
                     <div class="input-group">
                         <input type="number" id="num1" placeholder="Введіть число" />
 
@@ -109,23 +110,27 @@
                     </div>
                 </section>
 
-                <section class="timeCalc">
+                <section class="timeCalc underlineSection">
+                    <h2 class="timeCalcHeader">Калькулятор часу</h2>
                     <input type="number" class="timeCalcInput">
                     <p class="timeCalcText"></p>
                 </section>
 
-                <section class="dino">
+                <section class="dino underlineSection">
+                    <h2 class="dinoHeader">Google динозавр</h2>
                     <div class="dinoKeyCatch"></div>
                     <svg class="dinoSVG"></svg>
                 </section>
 
-                <section class="football">
+                <section class="football underlineSection">
+                    <h2 class="footballHeader">Футбол</h2>
                     <div class="football__field"></div>
                     <div class="football__ball"></div>
                     <div class="football__cursor"></div>
                 </section>
 
-                <section class="threeNums">
+                <section class="threeNums underlineSection">
+                    <h2 class="threeNumsHeader">Введіть 3 числа</h2>
                     <div class="threeNumsInputList">
                         <input type="number" placeholder="Введіть число" class="threeNumsInput threeNumsInput1">
                         <input type="number" placeholder="Введіть число" class="threeNumsInput threeNumsInput2">
@@ -134,7 +139,7 @@
                     <p class="threeNumsOutput">Введіть числа</p>
                 </section>
 
-                <section class="dotcontainer" id="dotcontainer">
+                <section class="dotcontainer underlineSection" id="dotcontainer">
                     <div class="dots" id="page2" onclick="window.location.hash = '#page2';"></div>
                     <div class="dots" id="page3" onclick="window.location.hash = '#page3';"></div>
                     <input id="v1" name="v1" type="checkbox">
@@ -163,7 +168,8 @@
                     </section>
                 </section>
 
-                <section class="cards">
+                <section class="cards underlineSection">
+                    <h2 class="cardsHeader">Обери вченого/их</h2>
                     <ul class="cardList">
                         <li class="cardItem">
                             <p class="cardItemText"></p>
@@ -237,7 +243,8 @@
                     </ul>
                 </section>
 
-                <section class="eyes">
+                <section class="eyes underlineSection">
+                    <h2 class="eyesHeader">Очі</h2>
                     <div class="eyeBody1">
                         <div class="eyePupil1"></div>
                     </div>

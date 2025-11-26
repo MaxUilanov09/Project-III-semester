@@ -2,9 +2,10 @@ const inputTime = document.querySelector('.timeCalcInput');
 const outputFormat = document.querySelector('.timeCalcText');
 outputFormat.textContent = `${0}h : ${0}m`;
 
-inputTime.addEventListener('focusout', () => {
+inputTime.addEventListener('keyup', () => {
     let time = parseInt(inputTime.value);
-    if (time < 0) {
+    if (time < 0 || isNaN(time)) {
+        outputFormat.textContent = `${0}h : ${0}m`;
         alert('Invalid Time format');
         return;
     }

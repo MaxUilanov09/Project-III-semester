@@ -3,7 +3,7 @@ const outputResult = document.querySelector('.leapYearText');
 outputResult.textContent = 'Введіть рік народження';
 
 const checkYear = () => {
-    let year = inputYear.value;
+    let year = Number(inputYear.value);
     console.log(year);
     if (year < 0) {
         outputResult.textContent = 'Рік має бути додатний';

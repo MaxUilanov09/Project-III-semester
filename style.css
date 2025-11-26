@@ -50,9 +50,42 @@ body.dark {
 }
 
 section {
-    border-top: #000000 1px solid;
-    border-bottom: #000000 1px solid;
+    /* border-top: #000000 1px solid;
+    border-bottom: #000000 1px solid; */
     padding: 10px 0;
+    margin-bottom: 50px;
+}
+
+.underlineSection::after {
+    display: block;
+    position: absolute;
+    content: " ";
+    width: 1000px;
+    height: 2px;
+    left: 0px;
+    align-self: center;
+    background-color: #000000;
+    transform: translateX(15vw) translateY(25px);
+}
+
+.rock-paper-scissors::after {
+    transform: translateX(15vw) translateY(225px);
+}
+
+.dino::after {
+    transform: translateX(15vw) translateY(-315px);
+}
+
+.dino {
+    margin-bottom: 100px;
+}
+
+.dotcontainer::after {
+    transform: translateX(15vw) translateY(200px);
+}
+
+.eyes::after {
+    transform: translateX(15vw) translateY(235px);
 }
 
 .rock-paper-scissors {
@@ -483,4 +516,21 @@ section {
 
 html { 
     scroll-behavior: smooth; 
+}
+.underlineSection>h2 {
+    text-align: center;
+}
+
+.leapYearInput, .timeCalcInput {
+    display: inline;
+    margin-right: 100px;
+}
+
+.leapYearText, .timeCalcText {
+    display: inline;
+}
+
+.eyesHeader {
+    position: absolute;
+    top: 3450px;
 }

@@ -387,6 +387,7 @@ function VTimeCheck(t) {
 function victoryAnimation(idxArr) {
     let intervalIdArr = Array(idxArr.length).fill(-1);
     let intervalTimeArr = Array(idxArr.length).fill(0);
+    let result = false;
     ableToExitVictory = false;
     for (let i = 0; i < idxArr.length; i++) {
         setTimeout(() => {intervalIdArr[i] = setInterval(() => {
@@ -396,12 +397,14 @@ function victoryAnimation(idxArr) {
                 intervalIdArr[i] = -1;
                 intervalTimeArr[i] = 1;
                 if (intervalTimeArr.every(x => x === 1)) {
-                    toDefaultState();
                     ableToExitVictory = true;
                 }
             }
             cardList.children.item(idxArr[i]).style.backgroundColor = VColorFunc(intervalTimeArr[i]);
             cardList.children.item(idxArr[i]).style.top = `${VTopFunc(intervalTimeArr[i])}px`;
+            if (ableToExitVictory) {
+                toDefaultState();
+            }
         }, 10)}, 200 * i);
     }
 }
@@ -418,7 +421,7 @@ function toDefaultState() {
 }
 
 function findTaskWrap(ev, taskObj, deleteFlag = false) {
-    target = getTarget(ev);
+    let target = getTarget(ev);
     if (target.tagName === 'P') {
         let cardId = getCardId(target);
         if (taskObj.answerIds.includes(cardId)) {
@@ -441,7 +444,7 @@ function findTaskWrap(ev, taskObj, deleteFlag = false) {
 }
 
 function addCardListener() {
-    addEventListener('keydown', (ev) => {
+    cardsSection.addEventListener('keydown', (ev) => {
         ev.preventDefault();
         if (ableToPressFlag && (ev.key === 'ArrowLeft' || ev.key === 'ArrowRight')) {
             keyMoveCard(ev, currentCard);
@@ -449,7 +452,7 @@ function addCardListener() {
     });
     cardList.addEventListener('click', (ev) => {
         let taskObj = taskAnswers[taskNum];
-        let target;
+        console.log(getTarget(ev));
         if (taskObj == undefined) {
             return;
         }
@@ -463,7 +466,7 @@ function addCardListener() {
                 break;
             
             case 'sort':
-                target = getTarget(ev);
+                let target = getTarget(ev);
                 if (target.tagName === 'P') {
                     let cardId = getCardId(target);
                     currentCard = (currentCard === cardId) ? -1 : cardId;
