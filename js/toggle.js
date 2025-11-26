@@ -244,7 +244,7 @@ document.querySelector('.modalClose').addEventListener('click', () => {
 });
 
 document.querySelector('.subscribeButton').addEventListener('click', () => {
-    if (modalIntervalId !== -1) {
+    if (modalIntervalId !== -1 || document.querySelector('.t-imput').value === '') {
         return;
     }
     document.querySelector('.modalWindow').classList.toggle('noShow');
@@ -264,6 +264,7 @@ document.querySelector('.subscribeButton').addEventListener('click', () => {
 
 document.querySelector('.modalSaveButton').addEventListener('click', () => {
     if (document.querySelector('.modalInput').value !== '') {
+        document.querySelector('.modalInput').value = '';
         document.querySelector('.modalText').classList.toggle('noSaveShow');
         document.querySelector('.modalInputText').classList.toggle('noSaveShow');
         document.querySelector('.modalSaveButton').classList.toggle('noSaveShow');

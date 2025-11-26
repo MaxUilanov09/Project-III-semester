@@ -161,6 +161,7 @@ let ableToExitVictory = true;
 
 function setStyles() {
     modeCard = document.querySelector(':root').style.getPropertyValue('--mode');
+    console.log(modeCard);
     cardsSection.style.width = `${sectionWidth}px`;
     cardsSection.style.marginLeft = '50px';
 
@@ -431,15 +432,12 @@ function findTaskWrap(ev, taskObj, deleteFlag = false) {
 
 function addCardListener() {
     addEventListener('keydown', (ev) => {
-        console.log(taskNum);
         if (taskNum !== 1 && taskNum !== 2) {
             return;
         }
-        console.log('hey2');
         ev.preventDefault();
         if (ableToPressFlag && (ev.key === 'ArrowLeft' || ev.key === 'ArrowRight')) {
             keyMoveCard(ev, currentCard);
-            console.log('hey');
         }
     });
     cardList.addEventListener('click', (ev) => {
@@ -471,24 +469,6 @@ function addCardListener() {
     });
 }
 
-function addListeners() {
-    let itemId = 0;
-    for (const taskItem of categoriesItems) {
-        let taskObj = taskAnswers[itemId];
-        taskItem.addEventListener('click', () => {
-            toDefaultState();
-            taskNum = (taskNum === taskObj.id) ? -1 : taskObj.id;
-            if (taskNum === 4) {
-                fillCards(noName = true);
-            }
-            else {
-                fillCards();
-            }
-        });
-        itemId++;
-    }
-}
-
 function fillCards(noName = false) {
     for (let itemIdx = 0; itemIdx < 12; itemIdx++) {
         const card = cardList.children.item(itemIdx);
@@ -507,6 +487,24 @@ function fillCards(noName = false) {
                 item.innerHTML = `${itemObj.name} ${itemObj.surname}<br>${itemObj.born}-${itemObj.dead}`; 
             }
         }
+    }
+}
+
+function addListeners() {
+    let itemId = 0;
+    for (const taskItem of categoriesItems) {
+        let taskObj = taskAnswers[itemId];
+        taskItem.addEventListener('click', () => {
+            toDefaultState();
+            taskNum = (taskNum === taskObj.id) ? -1 : taskObj.id;
+            if (taskNum === 4) {
+                fillCards(true);
+            }
+            else {
+                fillCards();
+            }
+        });
+        itemId++;
     }
 }
 

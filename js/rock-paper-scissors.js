@@ -7,6 +7,7 @@ const msg=document.querySelector("#msg");
 
 const userScorePara=document.querySelector("#user-score");
 const compScorePara=document.querySelector("#comp-score");
+let RPSrootMode = document.querySelector(':root').style.getPropertyValue('--mode');
 
 const genCompChoice=()=>{
     const options = ["rock","paper","scissors"];
@@ -15,8 +16,9 @@ const genCompChoice=()=>{
 }
 
 const drawGame=()=>{
+    RPSrootMode = document.querySelector(':root').style.getPropertyValue('--mode');
     msg.innerText="Нічия, зіграйте знову";
-    msg.style.color="#081b31";
+    msg.style.color=(RPSrootMode === 1) ? "#081b31" : "#ECECEC";
 }
 const showWinner=(userWin,userChoice,compChoice)=>{
     if(userWin){

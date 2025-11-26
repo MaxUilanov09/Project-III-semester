@@ -6,7 +6,7 @@ const teamInfo = [
     },
     {
         name: 'Макс',
-        workInfo: ['високосні роки', 'калькулятор часу', 'Google динозавр', 'футбол', 'введіть 3 числа', 'вчені', 'очі', 'кінцеві доробки'],
+        workInfo: ['високосні роки', 'калькулятор часу', 'Google динозавр', 'футбол', 'введіть 3 числа', 'вчених', 'очі', 'кінцеві доробки'],
         imagePath: '../images/photoMax.jpg'
     }
 ]
@@ -17,6 +17,8 @@ const scrollRightButton = document.querySelector('.scrollRight');
 
 const imgWidth = 150;
 const imgHeight = 150;
+
+let teamRootMode = document.querySelector(':root').style.getPropertyValue('--mode');
 
 let teamIntervalIdArr = [-1, -1];
 let teamTimeArr = [0, 0];
@@ -96,7 +98,7 @@ scrollLeftButton.addEventListener('click', () => {
     firstIdx = teamWrap.children.item(0).style.getPropertyValue('--idx');
     if (firstIdx < 0 && teamIntervalIdArr.every(x => x === -1)) {
         move(teamWrap, 1);
-        scrollLeftButton.style.filter = 'brightness(0.8)';
+        scrollLeftButton.style.filter = `brightness(${(teamRootMode === 1) ? 0.8 : 0.5})`;
         scrollRightButton.style.filter = 'none';
     }
 });
@@ -106,6 +108,6 @@ scrollRightButton.addEventListener('click', () => {
     if (firstIdx >= 0 && teamIntervalIdArr.every(x => x === -1)) {
         move(teamWrap, -1);
         scrollLeftButton.style.filter = 'none';
-        scrollRightButton.style.filter = 'brightness(0.8)';
+        scrollRightButton.style.filter = `brightness(${(teamRootMode === 1) ? 0.8 : 0.5})`;
     }
 })
