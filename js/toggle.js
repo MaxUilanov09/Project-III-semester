@@ -262,8 +262,11 @@ document.querySelector('.subscribeButton').addEventListener('click', () => {
     }, 1);
 });
 
+let username = 'User';
+
 document.querySelector('.modalSaveButton').addEventListener('click', () => {
     if (document.querySelector('.modalInput').value !== '') {
+        username = document.querySelector('.modalInput').value;
         document.querySelector('.modalInput').value = '';
         document.querySelector('.modalText').classList.toggle('noSaveShow');
         document.querySelector('.modalInputText').classList.toggle('noSaveShow');
@@ -271,4 +274,5 @@ document.querySelector('.modalSaveButton').addEventListener('click', () => {
         document.querySelector('.modalInput').classList.toggle('noSaveShow');
         document.querySelector('.modalDoneText').classList.toggle('noSaveShow');
     }
+    document.querySelector('.headerWelcomeText').textContent = `Вітаємо, ${username}!`;
 })
