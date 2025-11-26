@@ -462,6 +462,16 @@ html {
     transition: all 0.3s;
 }
 
+
+
+#msg{
+    background-color: #081b31;
+    color: #fff;
+    height:50px;
+    display:inline; 
+    border-radius:1rem;
+}
+
 .scrollButton {
     display: block;
     position: relative;
