@@ -36,7 +36,7 @@
                         </li>
                     </ul>
                 </div>
-                <a class="headerLink" href="#dotcontainer">Наша команда</a>
+                <a class="headerLink" href="#team">Наша команда</a>
                 <a class="headerLink" href="#footer">Контакти</a>
             </nav>
             <div class="themeToggle">
@@ -140,33 +140,11 @@
                     <p class="threeNumsOutput">Введіть числа</p>
                 </section>
 
-                <section class="dotcontainer underlineSection" id="dotcontainer">
-                    <div class="dots" id="page2" onclick="window.location.hash = '#page2';"></div>
-                    <div class="dots" id="page3" onclick="window.location.hash = '#page3';"></div>
-                    <input id="v1" name="v1" type="checkbox">
-                    <section id="pagecontainer">
-
-                        <div class="page p2" onclick="handlePageClick(event, this.className);">
-                            <hr />
-                            <ul>
-                                <li>
-                                    <h2>Макс</h2>
-                                </li>
-                                <br />
-                                <li><a href="">Інформація про роботу, яку він/вона виконав/ла</a></li>
-                            </ul>
-                        </div>
-                        <div class="page p3" onclick="handlePageClick(event, this.className);">
-                            <hr />
-                            <ul>
-                                <li>
-                                    <h2>Сєва</h2>
-                                </li>
-                                <br />
-                                <li><a href="">Інформація про роботу, яку він/вона виконав/ла</a></li>
-                            </ul>
-                        </div>
-                    </section>
+                <section class="team underlineSection" id="team">
+                    <h2 class="teamHeader">Наша команда</h2>
+                    <div class="teamWrap"></div>
+                    <button class="scrollButton scrollLeft">⟨</button>
+                    <button class="scrollButton scrollRight">⟩</button>
                 </section>
 
                 <section class="cards underlineSection">
@@ -276,7 +254,7 @@
         </footer>
     </div>
     <script src="./js/guess-the-number.js"></script>
-    <script src="./js/section-card.js"></script>
+    <script src="./js/team.js"></script>
     <script type="module" src="./js/rock-paper-scissors.js"></script>
     <script type="module" src="./js/Math-calculator.js"></script>
     <script type="module" src="./js/toggle.js"></script>

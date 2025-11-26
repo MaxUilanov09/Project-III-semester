@@ -159,14 +159,6 @@ const Vdt = 0.03;
 let ableToPressFlag = true;
 let ableToExitVictory = true;
 
-function addEventStyles(element, event, styleObj) {
-    element.addEventListener(event, () => {
-        for (const property in styleObj) {
-            element.style[property] = styleObj[property];
-        }
-    });
-}
-
 function setStyles() {
     modeCard = document.querySelector(':root').style.getPropertyValue('--mode');
     cardsSection.style.width = `${sectionWidth}px`;
@@ -278,14 +270,6 @@ function intervalSwapAnimation(idx1, idx2, leftPos) {
     }
 }
 
-function delay(start, duration) {
-    let x = 0;
-    while (Date.now() - start < duration) {
-        x++;
-    }
-    return;
-}
-
 function swap(arr, idx1, idx2) {
     if (idx1 === idx2) {
         return arr.map(x => x);
@@ -372,7 +356,6 @@ function VColorFunc(t) {
         let colorB = toDec(cardColorDone.slice(1 + i * 2, 1 + (i + 1) * 2));
         resultColor += parseInt(colorA + (colorB - colorA) * t).toString(16).padStart(2, '0');
     }
-    console.log(resultColor, t);
     return resultColor;
 }
 

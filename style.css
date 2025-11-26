@@ -4,6 +4,8 @@
 :root {
     --mode: 1;
     --bg-section-color: rgba(255, 255, 255, 1);
+    --bg-button-color: rgba(238, 238, 238, 1);
+    --bg-disabled-color: rgba(200, 200, 200, 1);
     --bg-parallax-color: rgba(25, 25, 25, 1);
     --section-text-color: rgba(0, 0, 0, 1);
     --RPS-h2-color: #333333;
@@ -80,8 +82,12 @@ section {
     margin-bottom: 100px;
 }
 
-.dotcontainer::after {
-    transform: translateX(15vw) translateY(200px);
+.team {
+    margin-bottom: 500px;
+}
+
+.team::after {
+    transform: translateX(15vw) translateY(480px);
 }
 
 .eyes::after {
@@ -337,8 +343,6 @@ section {
     transform: scale(0.98);
 }
 
-
-
 #result {
     padding: 12px 20px;
     font-size: 18px;
@@ -353,161 +357,6 @@ section {
 
 section {
     gap: 50px !important;
-}
-
-.dots {
-    border-radius: 1.25rem;
-    width: 1.25rem;
-    height: 1.25rem;
-    border: 2px solid #70788D;
-    padding: 0;
-    display: inline-block;
-    margin: 0 0.1rem;
-    transition: .4s ease;
-}
-
-.dots:target {
-    background-color: #70788D;
-}
-
-#dotcontainer {
-    width: 4.35rem;
-    margin: 0 auto 500px;
-    padding: 0;
-    height: 1.25rem;
-}
-
-.page {
-    width: 20rem;
-    height: 25rem;
-    padding: 1rem;
-    position: fixed;
-    top: calc(50% - 12.5rem);
-    /*left: calc(50% - 10rem);*/
-    background-color: #DCDFE3;
-    transition: 1s ease;
-    /* cubic-bezier(.31,.65,.57,.95);*/
-    opacity: 1;
-}
-
-#v1:checked~#pagecontainer>.page {
-    top: calc(-75% - 12.5rem);
-    z-index: -1000;
-
-}
-
-#v1+label {
-    border-radius: 1.25rem;
-    width: 1.25rem;
-    height: 1.25rem;
-    border: 2px solid #70788D;
-    padding: 0;
-    display: inline-block;
-    margin: 0 1.55rem;
-    transition: .3s ease;
-}
-
-#v1:checked+label {
-    background-color: #70788D;
-}
-
-#v1 {
-    display: none;
-}
-
-.page hr {
-    height: .25rem;
-    background-color: #70788D;
-    border: none;
-    opacity: 0.25;
-}
-
-.page h2 {
-    margin: 0;
-    font-weight: normal;
-}
-
-.page ul {
-    list-style-type: none;
-    padding-left: 1rem;
-}
-
-.page a {
-    color: #4084D6;
-    text-decoration: none;
-    line-height: 1.5rem;
-    font-size: 1.2rem;
-}
-
-.page a:hover {
-    border-bottom: .125rem solid #4084D6;
-}
-
-#pagecontainer {
-    height: 400px;
-    display: flex;
-    margin-top: 200px;
-    height: calc(100% - 1.5rem);
-    top: 1.75rem;
-    left: 0;
-    -webkit-perspective: 2000px;
-    perspective: 2000px;
-    perspective-origin: 50% 50%;
-    z-index: -1;
-}
-
-#page1:target~#pagecontainer>.p1 {
-    transform: rotateY(0deg);
-    left: calc(50% - 10rem);
-    opacity: 1;
-}
-
-#page1:target~#pagecontainer>.p2 {
-    transform: rotateY(-60deg) translateZ(-130px);
-    left: calc(50% + 10rem);
-    opacity: 0.5;
-}
-
-#page1:target~#pagecontainer>.p3 {
-    transform: rotateY(-90deg) translateZ(-190px);
-    left: calc(50% + 15rem);
-    opacity: 0.1;
-}
-
-#page2:target~#pagecontainer>.p1 {
-    transform: rotateY(60deg) translateZ(-130px);
-    left: calc(50% - 30rem);
-    opacity: 0.5
-}
-
-#page2:target~#pagecontainer>.p2 {
-    transform: rotateY(0deg);
-    left: calc(50% - 10rem);
-    opacity: 1;
-}
-
-#page2:target~#pagecontainer>.p3 {
-    transform: rotateY(-60deg) translateZ(-130px);
-    left: calc(50% + 10rem);
-    opacity: 0.5;
-}
-
-#page3:target~#pagecontainer>.p1 {
-    transform: rotateY(90deg) translateZ(-190px);
-    left: calc(50% - 35rem);
-    opacity: 0.1;
-}
-
-#page3:target~#pagecontainer>.p2 {
-    transform: rotateY(60deg) translateZ(-130px);
-    left: calc(50% - 30rem);
-    opacity: 0.5;
-}
-
-#page3:target~#pagecontainer>.p3 {
-    transform: rotateY(0deg);
-    left: calc(50% - 10rem);
-    opacity: 1;
 }
 
 .dino {
@@ -582,7 +431,7 @@ html {
 
 .eyesHeader {
     position: absolute;
-    top: 3525px;
+    top: 3690px;
 }
 
 .output {
@@ -611,4 +460,24 @@ html {
 .logoImageDark {
     filter: invert(1);
     transition: all 0.3s;
+}
+
+.scrollButton {
+    display: block;
+    position: relative;
+    top: 450px;
+    left: -70px;
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    line-height: 1;
+    background-color: var(--bg-button-color);
+    border: 1px solid var(--section-text-color);
+    border-radius: 50%;
+    color: var(--section-text-color);
+}
+
+.scrollRight {
+    left: 250px;
+    top: 400px;
 }
