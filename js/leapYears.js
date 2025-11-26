@@ -5,8 +5,9 @@ outputResult.textContent = 'Введіть рік народження';
 const checkYear = () => {
     let year = Number(inputYear.value);
     console.log(year);
-    if (year < 0) {
-        outputResult.textContent = 'Рік має бути додатний';
+
+    if (year <= 0 || isNaN(year)) {
+        outputResult.textContent = (isNaN(year)) ? 'Рік має бути числом' : 'Рік має бути додатний';
         outputResult.style.color = '#D5A000';
         return;
     }

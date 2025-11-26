@@ -1,8 +1,7 @@
 const secretNumber = Math.floor(Math.random() * 10) + 1;
 let guesses = 0;
 
-function checkGuess()
-{
+function checkGuess() {
   const guessInput = document.getElementById("guessInput");
   const guess = parseInt(guessInput.value);
   
@@ -16,7 +15,7 @@ function checkGuess()
   
   if (guess == secretNumber)
   {
-    displayOutput("Поздоровляємо! Ти вгадав число " + secretNumber);
+    displayOutput("Вітаємо! Ти вгадав число " + secretNumber);
     
   }
   else if (guess < secretNumber)

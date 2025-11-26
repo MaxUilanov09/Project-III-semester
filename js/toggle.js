@@ -103,8 +103,6 @@ for (const dropText of dropTextArr) {
     dropText.style.fontSize = '12px';
 }
 
-headerTextArrow.style.position = 'relative';
-headerTextArrow.style.left = 'relative';
 
 function updateDropListCSS() {
     rootMode = root.style.getPropertyValue('--mode');
@@ -161,6 +159,20 @@ function updateCSS() {
     root.style.setProperty('--RPS-h2-color', (currentMode === 1) ? '#333333' : '#EEEEEE');
     setStyles();
     updateDropListCSS();
+    for (const btn of document.querySelectorAll('.buttonBlack')) {
+        btn.style.display = 'inline-block';
+        btn.style.maxWidth = '450px';
+        btn.style.backgroundColor = (rootMode === '1') ? '#000000' : '#CCCCCC';
+        btn.style.padding = '10px 20px';
+        btn.style.borderRadius = '20px';
+        btn.style.width = 'fit-content';
+        btn.style.height = 'max-content';
+        btn.style.marginRight = 'calc(width)';
+        btn.style.alignSelf = 'bottom';
+        btn.style.fontFamily = `Montserrat Alternates`;
+        btn.style.color = (rootMode === '1') ? '#FFFFFF' : '#222222';
+        btn.style.boxSizing = 'content-box';
+    }
 }
 
 function updateDiv() {
@@ -198,6 +210,7 @@ themeDiv.addEventListener('click', () => {
     }
     animateDivs();
     document.body.classList.toggle('dark');
+    document.querySelectorAll('.logoImage').forEach(x => x.classList.toggle('logoImageDark'));
 });
 
 

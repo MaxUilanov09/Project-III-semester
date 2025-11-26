@@ -1,6 +1,7 @@
 let userScore=0;
 let compScore=0;
 
+const ukrMap = new Map([['rock', 'камінь'], ['paper', 'папір'], ['scissors', 'ножиці']])
 const choices=document.querySelectorAll(".choice");
 const msg=document.querySelector("#msg");
 
@@ -11,34 +12,30 @@ const genCompChoice=()=>{
     const options = ["rock","paper","scissors"];
     const  randIdx = Math.floor(Math.random()*3);
     return options[randIdx];
-  
-
 }
 
 const drawGame=()=>{
-    msg.innerText="Game was Draw,Play Again.";
-    msg.style.backgroundColor="#081b31";
+    msg.innerText="Нічия, зіграйте знову";
+    msg.style.color="#081b31";
 }
 const showWinner=(userWin,userChoice,compChoice)=>{
     if(userWin){
         userScore++;
         userScorePara.innerText=userScore;
        
-        msg.innerText=`You Win! your ${userChoice} beats ${compChoice}`;
-        msg.style.backgroundColor="green";
+        msg.innerText=`Ви Виграли! Ваш${userChoice === 'scissors' ? 'і' : ''} ${ukrMap.get(userChoice)} бʼ${userChoice === 'scissors' ? 'ють' : 'є'} ${ukrMap.get(compChoice)}`;
+        msg.style.color="green";
     }else{
         compScore++;
         compScorePara.innerText=compScore;
-        msg.innerText=`You lost! ${compChoice} beats your ${userChoice}`;
-        msg.style.backgroundColor="red";
+        msg.innerText=`Ви Програли! ${ukrMap.get(compChoice)} бʼ${compChoice === 'scissors' ? 'ють' : 'є'} Ваш${userChoice === 'scissors' ? 'і' : ''} ${ukrMap.get(userChoice)}`;
+        msg.style.color="red";
     }
 }
 
 const playGame=(userChoice)=>{
-    console.log("user choice=",userChoice);
     
     const compChoice = genCompChoice();
-    console.log("comp choice =",compChoice);
 
     if(userChoice === compChoice){
         

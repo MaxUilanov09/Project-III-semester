@@ -815,7 +815,11 @@ setup();
 
 setInterval(gameLoop, runDelay);
 
-dinoKeyCatch.addEventListener('click', () => {
+addEventListener('click', (ev) => {
+    console.log(ev.target);
+})
+
+dinoSvg.addEventListener('click', () => {
     if (dinoObj.dinoState === 'start') {
         dinoObj.dinoState = 'jump';
     }

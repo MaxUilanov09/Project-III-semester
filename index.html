@@ -18,12 +18,12 @@
     <div class="full-container">
         <header class="header">
             <div class="logo">
-                <img src="./images/Group 2.png" alt="">
+                <img class="logoImage" src="./images/Group 2.png" alt="">
                 <div>Coding <br><span>Magic</span></div>
             </div>
             <nav class="headerNav">
                 <div class="dropListContainer">
-                    <p class="headerDropListText">Інтерактив<img class="headerTextArrow" src="./images/Vector 4.png" alt=""></p>
+                    <p class="headerDropListText">Інтерактив</p>
                     <ul class="dropList">
                         <li class="dropItem">
                             <p class="dropText">Числовий</p>
@@ -53,7 +53,7 @@
             <main class="main">
                 <section class="leapYears underlineSection">
                     <h2 class="leapYearHeader">Перевір в який рік ти народився</h2>
-                    <input class="leapYearInput">
+                    <input class="leapYearInput" placeholder="Введіть число">
                     <p class="leapYearText"></p>
                 </section>
 
@@ -62,14 +62,15 @@
                     <p>Я загадав число від 1 до 10. Спробуй вгадати!</p>
                     <div class="input-container">
                         <input type="number" id="guessInput" placeholder="Вкажіть число від 1 до 10">
-                        <button onclick="checkGuess()">Перевірити</button>
+                        <button class="buttonBlack" onclick="checkGuess()">Перевірити</button>
                     </div>
-                    <div class="output" id="output"></div>
+                    <div class="output" id="output">Відповідь:</div>
                 </section>
 
 
                 <section class="rock-paper-scissors underlineSection">
                     <h2>Камінь - ножиці - папір</h2>
+                    <p id="msg">Зіграйте!</p>
                     <div class="counter-and-buttons">
                         <button id="rock" class="choice"><img src="./images/stone 1(2).png" alt=""></button>
                         <button id="scissors" class="choice"><img src="./images/scissors 1.png" alt=""></button>
@@ -77,10 +78,10 @@
                         <div class="counter">
                             <p>Рахунок:</p>
                             <div>
-                                <p>You
+                                <p>Ви
                                 <p id="comp-score">0</p>
                                 </p>
-                                <p>Computer
+                                <p>Компʼютер
                                 <p id="user-score">0</p>
                                 </p>
                             </div>
@@ -112,7 +113,7 @@
 
                 <section class="timeCalc underlineSection">
                     <h2 class="timeCalcHeader">Калькулятор часу</h2>
-                    <input type="number" class="timeCalcInput">
+                    <input type="text" class="timeCalcInput" placeholder="Введіть число">
                     <p class="timeCalcText"></p>
                 </section>
 
@@ -259,7 +260,7 @@
 
         <footer id="footer" class="footer">
             <div class="logo">
-                <img src="./images/Group 2.png" alt="">
+                <img class="logoImage" src="./images/Group 2.png" alt="">
                 <div>Coding <br><span>Magic</span></div>
             </div>
             <p>Тел: +38 (123) 456 78 90 <br>
@@ -269,13 +270,13 @@
                 Instagram: CodingMagic</p> <br>
             <div>
                 <input type="text" placeholder="Ваша ел. адреса..." class="t-imput">
-                <button>Підписатись</button>
-                <p>*Підписавшись, Ви зможете ортимувати інформаццію про новинки на сайті</p>
+                <button class="buttonBlack subscribeButton">Підписатись</button>
+                <p>*Підписавшись, Ви зможете ортимувати <br>інформацію про новинки на сайті</p>
             </div>
         </footer>
     </div>
-    <script type="module" src="./js/guess-the-number.js"></script>
-    <script type="module" src="./js/section-card.js"></script>
+    <script src="./js/guess-the-number.js"></script>
+    <script src="./js/section-card.js"></script>
     <script type="module" src="./js/rock-paper-scissors.js"></script>
     <script type="module" src="./js/Math-calculator.js"></script>
     <script type="module" src="./js/toggle.js"></script>

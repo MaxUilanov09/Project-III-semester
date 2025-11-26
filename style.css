@@ -64,7 +64,7 @@ section {
     height: 2px;
     left: 0px;
     align-self: center;
-    background-color: #000000;
+    background-color: var(--section-text-color);
     transform: translateX(15vw) translateY(25px);
 }
 
@@ -93,14 +93,17 @@ section {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 310px;
+    height: 290px;
 }
 
 .rock-paper-scissors>h2 {
     color: var(--RPS-h2-color);
+    position: relative;
+    top: 50px;
 }
 
 .header {
+    width: 1090px;
     height: 80px;
     opacity: 1;
     display: flex;
@@ -116,7 +119,8 @@ section {
     border-top-right-radius: 1px;
     color: var(--section-text-color);
     display: flex;
-    margin-right: 81px;
+    margin-right: 71px;
+    margin-left: 10px;
 }
 
 .logo>div>span {
@@ -160,8 +164,26 @@ section {
     margin: 0;
 }
 
-.headerDropListText>img {
-    margin-left: 8px;
+.headerDropListText::before {
+    content: " ";
+    position: absolute;
+    left: 98px;
+    bottom: 6px;
+    width: 7px;
+    height: 1px;
+    background-color: var(--section-text-color);
+    transform: rotate(135deg);
+}
+
+.headerDropListText::after {
+    content: " ";
+    position: absolute;
+    left: 93.5px;
+    bottom: 6px;
+    width: 7px;
+    height: 1px;
+    background-color: var(--section-text-color);
+    transform: rotate(45deg);
 }
 
 .headerLink {
@@ -185,19 +207,22 @@ section {
     background-color: #0056b3;
 }
 
-.footer {
-    margin-top: 500px;
-    
+.footer {    
     background: var(--bg-section-color) !important;
     height: 220px;
+    width: 1090px;
     opacity: 1;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.footer>.logo {
+    margin-right: 20px;
+}
+
 .footer>p {
-    margin: 0 100px 0 100px;
+    margin: 0 60px 0 30px;
 }
 
 .footer>div:last-child>p {
@@ -325,7 +350,6 @@ section {
     box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-left: 10px;
 }
-
 
 section {
     gap: 50px !important;
@@ -522,15 +546,69 @@ html {
 }
 
 .leapYearInput, .timeCalcInput {
+    padding: 12px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 50px;
+    background-color: #e0e0e0;
+    width: 180px;
+    text-align: center;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-left: 10px;
     display: inline;
     margin-right: 100px;
+}
+
+#guessInput {
+    padding: 12px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 50px;
+    background-color: #e0e0e0;
+    width: 180px;
+    text-align: center;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-left: 10px;
+    margin-right: 20px;
 }
 
 .leapYearText, .timeCalcText {
     display: inline;
 }
 
+.container-with-mini-games {
+    margin-bottom: 0;
+}
+
 .eyesHeader {
     position: absolute;
-    top: 3450px;
+    top: 3525px;
+}
+
+.output {
+    margin-top: 10px;
+}
+
+.guess-the-number {
+    text-align: center;
+}
+
+.t-imput {
+    padding: 12px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 50px;
+    background-color: #e0e0e0;
+    width: 180px;
+    text-align: center;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.subscribeButton {
+    margin-left: 20px;
+}
+
+.logoImageDark {
+    filter: invert(1);
+    transition: all 0.3s;
 }
