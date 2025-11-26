@@ -56,7 +56,6 @@ moonDiv.style.backgroundRepeat = 'no-repeat';
 
 const dropListContainer = document.querySelector('.dropListContainer');
 const dropListHeader = document.querySelector('.headerDropListText');
-const headerTextArrow = document.querySelector('.headerTextArrow');
 const dropList = document.querySelector('.dropList');
 const dropItemArr = document.querySelectorAll('.dropItem');
 const dropTextArr = document.querySelectorAll('.dropText');
@@ -72,7 +71,6 @@ let dropListdT = 0.025;
 dropListContainer.style.width = '110px';
 dropListContainer.style.height = '15px';
 dropListContainer.style.textAlign = 'center';
-// dropListContainer.style.overflow = 'hidden';
 
 dropListHeader.style.position = 'relative';
 dropListHeader.style.top = `${-dropListHeaderTopCover}px`;
@@ -155,6 +153,8 @@ function colorLerp(color1, color2, t) {
 function updateCSS() {
     root.style.setProperty('--mode', Number((currentMode === 1)));
     root.style.setProperty('--bg-section-color', (currentMode === 1) ? 'rgba(255, 255, 255, 1)' : 'rgba(30, 30, 30, 1)');
+    root.style.setProperty('--bg-button-color', (currentMode === 1) ? 'rgba(238, 238, 238, 1)' : 'rgba(30, 30, 30, 1)');
+    root.style.setProperty('--bg-disabled-color', (currentMode === 1) ? 'rgba(200, 200, 200, 1)' : 'rgba(70, 70, 70, 1)');
     root.style.setProperty('--section-text-color', (currentMode === -1) ? 'rgba(255, 255, 255, 1)' : 'rgba(0, 0, 0, 1)');
     root.style.setProperty('--RPS-h2-color', (currentMode === 1) ? '#333333' : '#EEEEEE');
     setStyles();
