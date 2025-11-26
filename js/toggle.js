@@ -75,7 +75,7 @@ dropListContainer.style.textAlign = 'center';
 dropListHeader.style.position = 'relative';
 dropListHeader.style.top = `${-dropListHeaderTopCover}px`;
 dropListHeader.style.paddingTop = `${dropListHeaderTopCover}px`;
-dropListHeader.style.zIndex = '5';
+dropListHeader.style.zIndex = '2';
 
 dropList.style.position = 'relative';
 dropList.style.margin = '0';
@@ -214,4 +214,60 @@ themeDiv.addEventListener('click', () => {
 });
 
 
-// do the lines between sections by using ::after on sections.
+let modalIntervalId = -1;
+document.querySelector('.modalWindow').style.setProperty('--opacity-val', 1);
+document.body.classList.toggle('noShow');
+
+document.querySelector('.modalClose').addEventListener('click', () => {
+    if (modalIntervalId !== -1) {
+        return;
+    }
+    document.body.classList.toggle('noShow');
+    modalIntervalId = setInterval(() => {
+        let OpVal = document.querySelector('.modalWindow').style.getPropertyValue('--opacity-val');
+        OpVal -= 0.025;
+        if (OpVal < 0) {
+            OpVal = 1;
+            clearInterval(modalIntervalId);
+            modalIntervalId = -1;
+            document.querySelector('.modalWindow').classList.toggle('noShow');
+            if (document.querySelector('.modalText').classList.contains('noSaveShow')) {
+                document.querySelector('.modalText').classList.toggle('noSaveShow');
+                document.querySelector('.modalInputText').classList.toggle('noSaveShow');
+                document.querySelector('.modalSaveButton').classList.toggle('noSaveShow');
+                document.querySelector('.modalInput').classList.toggle('noSaveShow');
+                document.querySelector('.modalDoneText').classList.toggle('noSaveShow');
+            }
+        }
+        document.querySelector('.modalWindow').style.setProperty('--opacity-val', OpVal);
+    }, 1);
+});
+
+document.querySelector('.subscribeButton').addEventListener('click', () => {
+    if (modalIntervalId !== -1) {
+        return;
+    }
+    document.querySelector('.modalWindow').classList.toggle('noShow');
+    document.querySelector('.modalWindow').style.setProperty('--opacity-val', 0);
+    modalIntervalId = setInterval(() => {
+        let OpVal = Number(document.querySelector('.modalWindow').style.getPropertyValue('--opacity-val'));
+        OpVal += 0.025;
+        if (OpVal > 1) {
+            OpVal = 1;
+            clearInterval(modalIntervalId);
+            modalIntervalId = -1;
+            document.body.classList.toggle('noShow');
+        }
+        document.querySelector('.modalWindow').style.setProperty('--opacity-val', OpVal);
+    }, 1);
+});
+
+document.querySelector('.modalSaveButton').addEventListener('click', () => {
+    if (document.querySelector('.modalInput').value !== '') {
+        document.querySelector('.modalText').classList.toggle('noSaveShow');
+        document.querySelector('.modalInputText').classList.toggle('noSaveShow');
+        document.querySelector('.modalSaveButton').classList.toggle('noSaveShow');
+        document.querySelector('.modalInput').classList.toggle('noSaveShow');
+        document.querySelector('.modalDoneText').classList.toggle('noSaveShow');
+    }
+})

@@ -276,6 +276,7 @@ function swap(arr, idx1, idx2) {
     }
     let intervalId = -1;
     let leftPos = 0;
+    let result = false;
     ableToPressFlag = false;
     intervalId = setInterval(() => {
         [leftPos, result] = intervalSwapAnimation(idx1, idx2, leftPos);
@@ -324,12 +325,14 @@ function keyMoveCard(ev, currentCard) {
             break;
     }
     let endCardId = scientistList[cardEndIdx];
-    console.log('sb:', scientistList, '\n', 'idx:', cardStartIdx, '=>', cardEndIdx, '\n', 'cardIds:', currentCard, '=>', endCardId);
+    // console.log('sb:', scientistList, '\n', 'idx:', cardStartIdx, '=>', cardEndIdx, '\n', 'cardIds:', currentCard, '=>', endCardId);
     scientistList = swap(scientistList, cardStartIdx, cardEndIdx);
-    console.log('sa:', scientistList);
 }
 
 function getCardId(target) {
+    if (target.tagName === 'BR') {
+        target = target.parentNode;
+    }
     return scientists.find(x => {return x.dead === parseInt(target.textContent.slice(-4))}).id;
 }
 
@@ -393,7 +396,6 @@ function victoryAnimation(idxArr) {
 }
 
 function toDefaultState() {
-    completedTasks.push(taskNum);
     scientistList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     taskNum = -1;
     currentCard = -1;
@@ -405,7 +407,7 @@ function toDefaultState() {
 
 function findTaskWrap(ev, taskObj, deleteFlag = false) {
     let target = getTarget(ev);
-    if (target.tagName === 'P') {
+    if (target.tagName === 'P' || target.tagName === 'BR') {
         let cardId = getCardId(target);
         if (taskObj.answerIds.includes(cardId)) {
             if (deleteFlag) {
@@ -421,21 +423,27 @@ function findTaskWrap(ev, taskObj, deleteFlag = false) {
         userAnswers.sort((a, b) => a - b);
         if (equateArrs(userAnswers, taskObj.answerIds)) {
             victoryAnimation(userAnswers.map(x => x - 1));
+            completedTasks.push(taskNum);
             update();
         }
     }
 }
 
 function addCardListener() {
-    cardsSection.addEventListener('keydown', (ev) => {
+    addEventListener('keydown', (ev) => {
+        console.log(taskNum);
+        if (taskNum !== 1 && taskNum !== 2) {
+            return;
+        }
+        console.log('hey2');
         ev.preventDefault();
         if (ableToPressFlag && (ev.key === 'ArrowLeft' || ev.key === 'ArrowRight')) {
             keyMoveCard(ev, currentCard);
+            console.log('hey');
         }
     });
     cardList.addEventListener('click', (ev) => {
         let taskObj = taskAnswers[taskNum];
-        console.log(getTarget(ev));
         if (taskObj == undefined) {
             return;
         }
@@ -450,7 +458,7 @@ function addCardListener() {
             
             case 'sort':
                 let target = getTarget(ev);
-                if (target.tagName === 'P') {
+                if (target.tagName === 'P' || target.tagName === 'BR') {
                     let cardId = getCardId(target);
                     currentCard = (currentCard === cardId) ? -1 : cardId;
                 }
@@ -468,6 +476,7 @@ function addListeners() {
     for (const taskItem of categoriesItems) {
         let taskObj = taskAnswers[itemId];
         taskItem.addEventListener('click', () => {
+            toDefaultState();
             taskNum = (taskNum === taskObj.id) ? -1 : taskObj.id;
             if (taskNum === 4) {
                 fillCards(noName = true);

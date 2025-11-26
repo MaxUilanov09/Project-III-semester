@@ -21,7 +21,7 @@ const imgHeight = 150;
 let teamIntervalIdArr = [-1, -1];
 let teamTimeArr = [0, 0];
 let tempItemIdxArr = [0, 1];
-let dTeamTime = 0.01;
+let dTeamTime = 0.015;
 
 function createInfoItem(parent, infoObj, offset = 0) {
     const infoItem = document.createElement('div');
@@ -50,9 +50,11 @@ function createInfoItem(parent, infoObj, offset = 0) {
     infoItemImage.style.backgroundRepeat = 'no-repeat';
 
     infoItemName.textContent = infoObj.name;
+    infoItemName.style.color = '#000000';
 
     infoItemWorkText.textContent = `Зробив ${infoObj.workInfo.slice(0, -1).join(', ')} та ${infoObj.workInfo[infoObj.workInfo.length - 1]}`
     infoItemWorkText.style.width = '250px'
+    infoItemWorkText.style.color = '#000000';
 
     infoItem.appendChild(infoItemImage);
     infoItem.appendChild(infoItemName);
@@ -88,11 +90,12 @@ function move(parent, direction) {
 }
 
 createTeam(teamWrap, teamInfo);
+scrollLeftButton.style.filter = 'brightness(0.8)';
 let firstIdx = 0;
 scrollLeftButton.addEventListener('click', () => {
     firstIdx = teamWrap.children.item(0).style.getPropertyValue('--idx');
-    if (firstIdx >= 0 && teamIntervalIdArr.every(x => x === -1)) {
-        move(teamWrap, -1);
+    if (firstIdx < 0 && teamIntervalIdArr.every(x => x === -1)) {
+        move(teamWrap, 1);
         scrollLeftButton.style.filter = 'brightness(0.8)';
         scrollRightButton.style.filter = 'none';
     }
@@ -100,8 +103,8 @@ scrollLeftButton.addEventListener('click', () => {
 
 scrollRightButton.addEventListener('click', () => {
     firstIdx = teamWrap.children.item(0).style.getPropertyValue('--idx');
-    if (firstIdx < 0 && teamIntervalIdArr.every(x => x === -1)) {
-        move(teamWrap, 1);
+    if (firstIdx >= 0 && teamIntervalIdArr.every(x => x === -1)) {
+        move(teamWrap, -1);
         scrollLeftButton.style.filter = 'none';
         scrollRightButton.style.filter = 'brightness(0.8)';
     }
